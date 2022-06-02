@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da forca</title>
+    <title>Jogo da Forca</title>
     <link rel="stylesheet" href="style.css">
 
     <!-- Fontes externas -->
@@ -21,12 +21,26 @@
             <img class="img-logo" src="img/logo-alura.png" alt="Logo da Alura com a letra A">
         </header>
         <main class="principal">         
-            <div class="homeDiv">
+            <div class="homePage">
                 <div class="btn-start">
-                    <button id="btn-start" class="btn btn-start">Comece a jogar!</button>
+                    <button id="btn-start" class="btn btnBlue">Comece a jogar!</button>
                 </div>
                 <div class="btnAddWord">
-                    <button id="btnAddWord" class="btn btnAddWord">Adicionar nova palavra</button>
+                    <button id="btnAddWord" class="btn btnGray">Adicionar nova palavra</button>
+                </div>
+            </div>
+
+            <div class="invisible addPage">
+                <div class="copy-text">
+                    <textarea class="input-text" id="textInput" cols="40" rows="6" placeholder="Digite sua palavra..."></textarea>
+                    <div class="aviso">
+                        <h6><img src="img/Vector.png" alt="Simbolo de exclamação">Digite apenas letras maiúsculas e máx. 8 letras.</h6>
+                    </div>
+                </div>
+                
+                <div class="btnCopy">
+                    <button id="btn-save" class="btn btnBlue">Salvar e começar</button>
+                    <button id="btn-cancel" class="btn btnGray">Cancelar</button>
                 </div>
             </div>
         </main>
