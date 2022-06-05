@@ -27,7 +27,7 @@ btnStart.addEventListener("click", () => {
     console.log("Jogo iniciado...");
     initGamePage();
     var secretWord = choosingWord(wordsAdded);
-    //writeUnderscore(secretWord);
+    
 });
 
 btnCancelGame.addEventListener("click", () => {
@@ -97,17 +97,3 @@ function choosingWord(wordsAdded) {
     return wordsAdded[index];
 }
 
-function writeUnderscore(secretWord) {
-    tabuleiro.lineWidth = 6;
-    tabuleiro.lineCap = "round";
-    tabuleiro.lineJoin = "round";
-    tabuleiro.strokeStyle = "#0A3871";
-    tabuleiro.beginPath();
-    var eixo = 600 / secretWord.length;
-    for (let i = 0; i < secretWord.length; i++) {
-        tabuleiro.moveTo([500 + (eixo * i)], 640);
-        tabuleiro.lineTo([500 + (eixo * i)], 640);
-    }
-    tabuleiro.stroke();
-    tabuleiro.closePath();
-}
