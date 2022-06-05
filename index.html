@@ -23,17 +23,17 @@
         <header class="header">
             <img class="img-logo" src="img/logo-alura.png" alt="Logo da Alura com a letra A">
         </header>
-        <main class="principal">         
-            <div class="homePage">
+        <main id="mainPage" class="principal">         
+            <div id="homePage" class="homePage">
                 <div class="btn-start">
-                    <button id="btn-start" class="btn btnBlue">Comece a jogar!</button>
+                    <button id="btnStart" class="btn btnBlue">Comece a jogar!</button>
                 </div>
                 <div class="btnAddWord">
                     <button id="btnAddWord" class="btn btnGray">Adicionar nova palavra</button>
                 </div>
             </div>
 
-            <div class="invisible addPage">
+            <div id="addPage" class="invisible addPage">
                 <div class="copy-text">
                     <textarea class="input-text" id="textInput" cols="40" rows="6" placeholder="Digite sua palavra..."></textarea>
                     <div class="aviso">
@@ -42,12 +42,12 @@
                 </div>
                 
                 <div class="btnCopy">
-                    <button id="btn-save" class="btn btnBlue">Salvar e começar</button>
-                    <button id="btn-cancel" class="btn btnGray">Cancelar</button>
+                    <button id="btnSaveWord" class="btn btnBlue">Salvar e começar</button>
+                    <button id="btnCancelAdd" class="btn btnGray">Cancelar</button>
                 </div>
             </div>
 
-            <div class="invisible game">
+            <div id="gamePage" class="invisible game">
                 <div class="drawing">
                     <p>Desenho da forca</p>
                 </div>
@@ -58,8 +58,8 @@
                     <p>Letras não encontradas</p>
                 </div>
                 <div class="buttonsGame">
-                    <button id="btn-save" class="btn btnBlue">Salvar e começar</button>
-                    <button id="btn-cancel" class="btn btnGray">Cancelar</button>
+                    <button id="btnSave" class="btn btnBlue">Salvar e começar</button>
+                    <button id="btnCancelGame" class="btn btnGray">Cancelar</button>
                 </div>
             </div>
         </main>
