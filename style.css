@@ -132,7 +132,7 @@
 #forca {
     width: 194px;
     height: 206px;
-    background-image: url(img/forca06.png);
+    background-image: url(img/forca.png);
     background-repeat: no-repeat;
 }
 
@@ -151,7 +151,7 @@
     width: 16px;
     text-align: center;
     border-bottom: 3px solid black;
-    color: red;
+    color: black;
     font-weight: 500;
 }
 

@@ -11,22 +11,23 @@ var erros = 0;
 /* SELETORES */
 const btnStart = document.getElementById("btnStart");
 const btnAddWords = document.getElementById("btnAddWord");
-const homePage = document.getElementById("homePage");
-const addPage = document.getElementById("addPage");
-const gamePage = document.getElementById("gamePage");
 const btnCancelGame = document.getElementById("btnCancelGame");
 const btnSave = document.getElementById("btnSave");
 const btnCancelAdd = document.getElementById("btnCancelAdd");
-const btnSaveWord = document.getElementById("btnSaveWord");
+const btnNewGame = document.getElementById("btnNewGame");
+const homePage = document.getElementById("homePage");
+const addPage = document.getElementById("addPage");
+const gamePage = document.getElementById("gamePage");
 const inputWordToAdd = document.getElementById('textInput');
-//var tabuleiro = document.getElementById("forca").getContext("2d");
+const palavraSecreta = document.getElementById("palavra-secreta");
+
 
 /* PRINCIPAL */
 
 btnStart.addEventListener("click", () => {
     console.log("Jogo iniciado...");
     initGamePage();
-    var secretWord = choosingWord(wordsAdded);
+    newGame();
     
 });
 
@@ -58,10 +59,12 @@ btnSaveWord.addEventListener("click", () => {
 })
 
 btnCancelAdd.addEventListener("click", () => {
-    if (statusAdd == true) {
-        initHomePage();
-    }
+    initHomePage();
 });
+
+btnNewGame.addEventListener("click", () => {
+    newGame();
+})
 
 /* FUNÇÕES */
 
@@ -95,5 +98,11 @@ function initHomePage() {
 function choosingWord(wordsAdded) {
     let index = [Math.floor(Math.random() * wordsAdded.length)];
     return wordsAdded[index];
+}
+
+function newGame() {
+    var secretWord = choosingWord(wordsAdded);
+    palavraSecreta.innerHTML = secretWord;
+    erros = 0;
 }
 
