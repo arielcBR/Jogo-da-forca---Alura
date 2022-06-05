@@ -122,34 +122,42 @@
     margin: 0 50px 60px 50px;
 }
 
-.drawing{
-    width: 555px;
-    height: 350px;
-    position: relative;
-    top: -60px;
+.gamePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
-.foundLetters{
-    width: 100%;
-    height: 30px;
-    margin-bottom: 10px;
-    padding: 5px;
-    font-family: 'Inter', sans-serif;
-    font-size: 38px;
-    color: #0A3871;
-    text-align: center;
-    position: relative;
-    top: -30px;
+#forca {
+    width: 194px;
+    height: 206px;
+    background-image: url(img/forca06.png);
+    background-repeat: no-repeat;
 }
 
-.wrongLetters{
-    width: 100%;
-    height: 30px;
-    margin-bottom: 20px;    
-    font-family: 'Inter', sans-serif;
-    font-size: 18px;
-    color: #495057;
+#palavra-secreta {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.letras {
+    margin: 0 3px;
+    padding: 3px;
+    width: 16px;
     text-align: center;
+    border-bottom: 3px solid black;
+    color: red;
+    font-weight: 500;
+}
+
+#forca p{
+    visibility: hidden;
 }
 
 .invisible {

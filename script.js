@@ -1,10 +1,12 @@
-/* VARIAVEIS */
-var wordsAdded = ["JAVASCRIPT", "HTML", "BOOTSTRAP", "CSS", "NODE", "FRAMEWORK", "JAVA", "GIT", "WINDOWS"];
+/* VARIAVEIS E CONSTANTES*/
+var wordsAdded = ["JAVASCRIPT", "HTML", "ALURA", "CSS", "NODE", "FRAMEWORK", "JAVA", "GIT", "WINDOWS"];
+const tentativas = 8;
 
     /* VARIAVEIS DE CONTROLE */
 var statusHome = false;
 var statusAdd = false;
 var statusGame = false;
+var erros = 0;
 
 /* SELETORES */
 const btnStart = document.getElementById("btnStart");
@@ -17,14 +19,15 @@ const btnSave = document.getElementById("btnSave");
 const btnCancelAdd = document.getElementById("btnCancelAdd");
 const btnSaveWord = document.getElementById("btnSaveWord");
 const inputWordToAdd = document.getElementById('textInput');
-
+//var tabuleiro = document.getElementById("forca").getContext("2d");
 
 /* PRINCIPAL */
 
 btnStart.addEventListener("click", () => {
     console.log("Jogo iniciado...");
     initGamePage();
-    // Sortear a palavra
+    var secretWord = choosingWord(wordsAdded);
+    //writeUnderscore(secretWord);
 });
 
 btnCancelGame.addEventListener("click", () => {
@@ -42,8 +45,9 @@ btnAddWords.addEventListener("click", () => {
 btnSaveWord.addEventListener("click", () => {
     if (statusAdd == true) {
         var wordToAdd = inputWordToAdd.value.toUpperCase();
-        if (wordToAdd.length > 8) {
-            alert("A palavra inserida excedeu o tamanho máximo!!!");
+        if (wordToAdd.length > 8 || wordToAdd == "") {
+            alert("A palavra está fora das especificações!!!");
+            inputWordToAdd.value = " ";
         }
         else {
             inputWordToAdd.value = " ";
@@ -60,11 +64,6 @@ btnCancelAdd.addEventListener("click", () => {
 });
 
 /* FUNÇÕES */
-
-function choosingWord(wordsAdded) {
-    let index = [Math.floor(Math.random() * wordsAdded.length)];
-    return wordsAdded[index];
-}
 
 function initGamePage() {
     gamePage.classList.remove("invisible");
@@ -91,4 +90,24 @@ function initHomePage() {
     statusGame = false;
     statusHome = true;
     statusAdd = false;
+}
+
+function choosingWord(wordsAdded) {
+    let index = [Math.floor(Math.random() * wordsAdded.length)];
+    return wordsAdded[index];
+}
+
+function writeUnderscore(secretWord) {
+    tabuleiro.lineWidth = 6;
+    tabuleiro.lineCap = "round";
+    tabuleiro.lineJoin = "round";
+    tabuleiro.strokeStyle = "#0A3871";
+    tabuleiro.beginPath();
+    var eixo = 600 / secretWord.length;
+    for (let i = 0; i < secretWord.length; i++) {
+        tabuleiro.moveTo([500 + (eixo * i)], 640);
+        tabuleiro.lineTo([500 + (eixo * i)], 640);
+    }
+    tabuleiro.stroke();
+    tabuleiro.closePath();
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Forca</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="keyboard.css">
 
     <!-- Fontes externas -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
@@ -48,14 +49,50 @@
             </div>
 
             <div id="gamePage" class="invisible game">
-                <div class="drawing">
-                    <p>Desenho da forca</p>
+                <div id="forca">
                 </div>
-                <div class="foundLetters">
-                    <p>Letras encontradas</p>
+                
+                <div id="palavra-secreta">
+                    <div class="letras">A</div>
+                    <div class="letras">A</div>
+                    <div class="letras">A</div>
                 </div>
-                <div class="wrongLetters">
-                    <p>Letras não encontradas</p>
+                
+                <div id="teclado">
+                    <div class="teclas">
+                        <button id="tecla-Q" onclick="">Q</button>
+                        <button id="tecla-W" onclick="">W</button>
+                        <button id="tecla-E" onclick="">E</button>
+                        <button id="tecla-R" onclick="">R</button>
+                        <button id="tecla-T" onclick="">T</button>
+                        <button id="tecla-Y" onclick="">Y</button>
+                        <button id="tecla-U" onclick="">U</button>
+                        <button id="tecla-I" onclick="">I</button>
+                        <button id="tecla-O" onclick="">O</button>
+                        <button id="tecla-P" onclick="">P</button>
+                    </div>
+                    <div class="teclas">
+                        <button id="tecla-A" onclick="">A</button>
+                        <button id="tecla-S" onclick="">S</button>
+                        <button id="tecla-D" onclick="">D</button>
+                        <button id="tecla-F" onclick="">F</button>
+                        <button id="tecla-G" onclick="">G</button>
+                        <button id="tecla-H" onclick="">H</button>
+                        <button id="tecla-J" onclick="">J</button>
+                        <button id="tecla-K" onclick="">K</button>
+                        <button id="tecla-L" onclick="">L</button>
+                        <button id="tecla-Ç" onclick="">Ç</button>
+                    </div>
+                    <div class="teclas">
+                        <button id="tecla-Z" onclick="">Z</button>
+                        <button id="tecla-X" onclick="">X</button>
+                        <button id="tecla-C" onclick="">C</button>
+                        <button id="tecla-V" onclick="">V</button>
+                        <button id="tecla-B" onclick="">B</button>
+                        <button id="tecla-N" onclick="">N</button>
+                        <button id="tecla-M" onclick="">M</button>
+                        <button id="tecla-game" onclick="">🕹️</button>
+                    </div>
                 </div>
                 <div class="buttonsGame">
                     <button id="btnSave" class="btn btnBlue">Salvar e começar</button>
