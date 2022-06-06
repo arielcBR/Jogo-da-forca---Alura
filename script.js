@@ -3,10 +3,8 @@ var wordsAdded = ["JAVASCRIPT", "HTML", "ALURA", "CSS", "NODE", "FRAMEWORK", "JA
 const tentativas = 8;
 
     /* VARIAVEIS DE CONTROLE */
-var statusHome = false;
-var statusAdd = false;
-var statusGame = false;
 var erros = 0;
+var listaDinamica = [];
 
 /* SELETORES */
 const btnStart = document.getElementById("btnStart");
@@ -101,8 +99,22 @@ function choosingWord(wordsAdded) {
 }
 
 function newGame() {
-    var secretWord = choosingWord(wordsAdded);
-    palavraSecreta.innerHTML = secretWord;
     erros = 0;
+    var secretWord = choosingWord(wordsAdded);
+    console.log("A palavra secreta é: " + secretWord);
+    palavraSecreta.innerHTML = "";
+    for (let i = 0; i < secretWord.length; i++){
+        if (listaDinamica[i] == undefined) {
+            listaDinamica[i] = "&nbsp";
+            palavraSecreta.innerHTML = palavraSecreta.innerHTML + "<div class='letras'>" + listaDinamica[i] + "</div>";
+        }
+        else {
+            palavraSecreta.innerHTML = palavraSecreta.innerHTML + "<div class='letras'>" + listaDinamica[i] + "</div>"; 
+        }
+    }
+    
 }
 
+function checkLetterTyped(letter) {
+    alert("Pressionada a letra " + letter);
+}
