@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Forca</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="keyboard.css">
 
     <!-- Fontes externas -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
@@ -17,9 +15,13 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Inter:wght@100;400;700&display=swap"
             rel="stylesheet">
+    
+    <link rel="stylesheet" href="bootstrap.min.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- Fontes internas -->
+    <link rel="stylesheet" href="keyboard.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -106,16 +108,11 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+                <div id="messageModal" class="modal-body">
                     ...
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
-                    
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>  
                 </div>
             </div>
         </div>
@@ -125,7 +122,7 @@
     <script src="script.js"></script>
     <script src="keyboard.js"></script>
 
-    <!-- Scripts externos -->
+    <!-- Scripts Externos -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

@@ -125,6 +125,10 @@ function compareLists(letter) {
     if (position < 0) {
         tentativasRestantes--;   
         loadingImagesHangedMan(tentativasRestantes);
+        if (tentativasRestantes === 0) {
+            let messageBody = "Voce perdeu! A palavra secreta era " + secretWord;
+            openModal(messageBody);
+        }
     }
     else {
         for (let i = 0; i < secretWord.length; i++){
@@ -145,7 +149,6 @@ function compareLists(letter) {
         //Mensagem de vitória
         tentativasRestantes = 0;
     }
-
 }
 
 function loadingImagesHangedMan(tentativasRestantes) {
@@ -171,4 +174,12 @@ function loadingImagesHangedMan(tentativasRestantes) {
         default:
             forca.style.backgroundImage = "url('img/forca.png')";
     }
+}
+
+function openModal(messageBody) {
+    let modalBody = document.getElementById("messageModal");
+    modalBody.innerText = messageBody;
+    $("#myModal").modal({
+        show: true
+    });
 }
