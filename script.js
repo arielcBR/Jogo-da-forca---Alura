@@ -1,5 +1,5 @@
 /* VARIAVEIS E CONSTANTES*/
-var wordsAdded = ["JAVASCRIPT", "HTML", "ALURA", "CSS", "NODE", "FRAMEWORK", "JAVA", "GIT", "WINDOWS"];
+var wordsAdded = ["JAVASCRIPT", "HTML", "ALURA", "CSS", "NODE", "FRAMEWORK", "JAVA", "GIT", "WINDOWS", "MAC", "INTERNET", "TCP", "DNS", "HTTP", "LINUX", "BOOTSTRAP", "FRONTEND", "BACKEND"];
 const tentativas = 6;
 
 /* VARIAVEIS DE CONTROLE */
@@ -42,7 +42,13 @@ btnAddWords.addEventListener("click", () => {
 
 btnSaveWord.addEventListener("click", () => {
     var wordToAdd = inputWordToAdd.value.toUpperCase();
-    if (wordToAdd.length > 8) {
+    var status = false;
+    for (let i = 0; i < wordToAdd.length; i++){
+        if (wordToAdd[i] == " ") {
+            status = true;
+        }
+    }
+    if (wordToAdd.length > 8 || status == true) {
         alert("A palavra está fora das especificações!!!");
         inputWordToAdd.value = " ";
     }
@@ -87,19 +93,17 @@ function choosingWord(wordsAdded) {
 }
 
 function newGame() {
-    tentativasRestantes = tentativas;                       // Reseta tentativas
-    secretWord = choosingWord(wordsAdded);                  // Sorteia nova palavra
+    tentativasRestantes = tentativas;                         // Reseta tentativas
+    secretWord = choosingWord(wordsAdded);                    // Sorteia nova palavra
     console.log("A palavra secreta é: " + secretWord);
-    for (let i = 0; i < listaDinamica.length; i++){         // Reinicia listaDinamica
+    for (let i = 0; i < listaDinamica.length; i++){           // Reinicia listaDinamica
         listaDinamica[i] = undefined;
     }
-    putWordsOnTheScreen();                                  // Coloca traços na tela
-    loadingImagesHangedMan(tentativas);                     // Reseta a forca   
+    putWordsOnTheScreen();                                    // Coloca traços na tela
+    loadingImagesHangedMan(tentativas);                       // Reseta a forca   
     
-    var teclas = document.querySelectorAll(".teclas button");
-    console.log(teclas);
-   
-    teclas.forEach(tecla => {                               // Reinicia teclado
+    var teclas = document.querySelectorAll(".teclas button"); // Reinicia teclado
+    teclas.forEach(tecla => {                               
         tecla.classList.remove('LetraPressionada');
         tecla.disabled = false;
     })
@@ -140,7 +144,11 @@ function compareLists(letter) {
         loadingImagesHangedMan(tentativasRestantes);
         if (tentativasRestantes === 0) {
             let messageBody = `Voce perdeu! A palavra secreta era: <br><strong>${secretWord}</strong>`;
-            let messageTitle = "Não foi desta vez :("
+            let messageTitle = "Não foi desta vez :(";
+            var teclas = document.querySelectorAll(".teclas button");
+            teclas.forEach(tecla => {                                   // Desabilita teclado
+                tecla.disabled = true;
+            })
             openModal(messageBody, messageTitle);
         }
     }
@@ -164,6 +172,10 @@ function compareLists(letter) {
         let messageTitle = "Uhuuuuuuul, você acertou!";
         openModal(messageBody, messageTitle);
         tentativasRestantes = 0;
+        var teclas = document.querySelectorAll(".teclas button"); 
+        teclas.forEach(tecla => {                                   // Desabilita teclado
+            tecla.disabled = true;
+        })
     }
 }
 
