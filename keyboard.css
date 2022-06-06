@@ -22,3 +22,13 @@
 .teclas button:hover {
     transform: scale(1.2);
 }
+
+.teclas button:disabled{
+    cursor: not-allowed;
+}
+
+.LetraPressionada{
+    background-color: #000000;
+    color: #fff;
+}
+

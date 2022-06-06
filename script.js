@@ -1,9 +1,10 @@
 /* VARIAVEIS E CONSTANTES*/
 var wordsAdded = ["JAVASCRIPT", "HTML", "ALURA", "CSS", "NODE", "FRAMEWORK", "JAVA", "GIT", "WINDOWS"];
-const tentativas = 8;
+const tentativas = 6;
 
-    /* VARIAVEIS DE CONTROLE */
-var erros = 0;
+/* VARIAVEIS DE CONTROLE */
+var secretWord = "";
+var tentativasRestantes = tentativas;
 var listaDinamica = [];
 
 /* SELETORES */
@@ -18,6 +19,7 @@ const addPage = document.getElementById("addPage");
 const gamePage = document.getElementById("gamePage");
 const inputWordToAdd = document.getElementById('textInput');
 const palavraSecreta = document.getElementById("palavra-secreta");
+const forca = document.getElementById("forca");
 
 
 /* PRINCIPAL */
@@ -30,10 +32,7 @@ btnStart.addEventListener("click", () => {
 });
 
 btnCancelGame.addEventListener("click", () => {
-    console.log("Status: " + statusGame);
-    if (statusGame == true) {
-        initHomePage();
-    }
+    initHomePage();
 });
 
 btnAddWords.addEventListener("click", () => {
@@ -42,17 +41,15 @@ btnAddWords.addEventListener("click", () => {
 });
 
 btnSaveWord.addEventListener("click", () => {
-    if (statusAdd == true) {
-        var wordToAdd = inputWordToAdd.value.toUpperCase();
-        if (wordToAdd.length > 8 || wordToAdd == "") {
-            alert("A palavra está fora das especificações!!!");
-            inputWordToAdd.value = " ";
-        }
-        else {
-            inputWordToAdd.value = " ";
-            wordsAdded.push(wordToAdd);
-            initGamePage();
-        }
+    var wordToAdd = inputWordToAdd.value.toUpperCase();
+    if (wordToAdd.length > 8) {
+        alert("A palavra está fora das especificações!!!");
+        inputWordToAdd.value = " ";
+    }
+    else {
+        inputWordToAdd.value = " ";
+        wordsAdded.push(wordToAdd);
+        initGamePage();
     }
 })
 
@@ -70,27 +67,18 @@ function initGamePage() {
     gamePage.classList.remove("invisible");
     homePage.classList.add("invisible");
     addPage.classList.add("invisible");
-    statusGame = true;
-    statusHome = false;
-    statusAdd = false;
 }
 
 function initAddPage() {
     gamePage.classList.add("invisible");
     homePage.classList.add("invisible");
     addPage.classList.remove("invisible");
-    statusGame = false;
-    statusHome = false;
-    statusAdd = true;
 }
 
 function initHomePage() {
     gamePage.classList.add("invisible");
     homePage.classList.remove("invisible");
     addPage.classList.add("invisible");
-    statusGame = false;
-    statusHome = true;
-    statusAdd = false;
 }
 
 function choosingWord(wordsAdded) {
@@ -99,22 +87,88 @@ function choosingWord(wordsAdded) {
 }
 
 function newGame() {
-    erros = 0;
-    var secretWord = choosingWord(wordsAdded);
+    tentativasRestantes = tentativas;
+    secretWord = choosingWord(wordsAdded);
     console.log("A palavra secreta é: " + secretWord);
+    putWordsOnTheScreen();  
+}
+
+function checkLetterTyped(letter) {
+    document.getElementById(`tecla-${letter}`).disabled = true;
+    if (tentativasRestantes > 0) {
+        addStyleLetter(`tecla-${letter}`);
+        compareLists(letter);
+        putWordsOnTheScreen();
+    }      
+}
+
+function addStyleLetter(id) {
+    var elementDiv = document.getElementById(id);
+    elementDiv.classList.add("LetraPressionada");
+}
+
+function putWordsOnTheScreen() {
     palavraSecreta.innerHTML = "";
-    for (let i = 0; i < secretWord.length; i++){
+    for (let i = 0; i < secretWord.length; i++) {
         if (listaDinamica[i] == undefined) {
             listaDinamica[i] = "&nbsp";
             palavraSecreta.innerHTML = palavraSecreta.innerHTML + "<div class='letras'>" + listaDinamica[i] + "</div>";
         }
         else {
-            palavraSecreta.innerHTML = palavraSecreta.innerHTML + "<div class='letras'>" + listaDinamica[i] + "</div>"; 
+            palavraSecreta.innerHTML = palavraSecreta.innerHTML + "<div class='letras'>" + listaDinamica[i] + "</div>";
         }
     }
-    
 }
 
-function checkLetterTyped(letter) {
-    alert("Pressionada a letra " + letter);
+function compareLists(letter) {
+    const position = secretWord.indexOf(letter);
+    if (position < 0) {
+        tentativasRestantes--;   
+        loadingImagesHangedMan(tentativasRestantes);
+    }
+    else {
+        for (let i = 0; i < secretWord.length; i++){
+            if (secretWord[i] == letter) {
+                listaDinamica[i] = letter;
+            }
+        }
+    }
+
+    let victory = true;
+    for (let i = 0; i < secretWord.length; i++) {
+        if (secretWord[i] != listaDinamica[i]) {
+            victory = false;
+        }
+    }
+
+    if (victory) {
+        //Mensagem de vitória
+        tentativasRestantes = 0;
+    }
+
+}
+
+function loadingImagesHangedMan(tentativasRestantes) {
+    switch (tentativasRestantes) {
+        case 5:
+            forca.style.backgroundImage = "url('img/forca01.png')";
+            break;
+        case 4:
+            forca.style.backgroundImage = "url('img/forca02.png')";
+            break;
+        case 3:
+            forca.style.backgroundImage = "url('img/forca03.png')";
+            break;
+        case 2:
+            forca.style.backgroundImage = "url('img/forca04.png')";
+            break;
+        case 1:
+            forca.style.backgroundImage = "url('img/forca05.png')";
+            break;
+        case 0:
+            forca.style.backgroundImage = "url('img/forca06.png')";
+            break;
+        default:
+            forca.style.backgroundImage = "url('img/forca.png')";
+    }
 }
