@@ -87,10 +87,22 @@ function choosingWord(wordsAdded) {
 }
 
 function newGame() {
-    tentativasRestantes = tentativas;
-    secretWord = choosingWord(wordsAdded);
+    tentativasRestantes = tentativas;                       // Reseta tentativas
+    secretWord = choosingWord(wordsAdded);                  // Sorteia nova palavra
     console.log("A palavra secreta é: " + secretWord);
-    putWordsOnTheScreen();  
+    for (let i = 0; i < listaDinamica.length; i++){         // Reinicia listaDinamica
+        listaDinamica[i] = undefined;
+    }
+    putWordsOnTheScreen();                                  // Coloca traços na tela
+    loadingImagesHangedMan(tentativas);                     // Reseta a forca   
+    
+    var teclas = document.querySelectorAll(".teclas button");
+    console.log(teclas);
+   
+    teclas.forEach(tecla => {                               // Reinicia teclado
+        tecla.classList.remove('LetraPressionada');
+        tecla.disabled = false;
+    })
 }
 
 function checkLetterTyped(letter) {
@@ -100,6 +112,7 @@ function checkLetterTyped(letter) {
         compareLists(letter);
         putWordsOnTheScreen();
     }      
+    
 }
 
 function addStyleLetter(id) {
@@ -126,8 +139,9 @@ function compareLists(letter) {
         tentativasRestantes--;   
         loadingImagesHangedMan(tentativasRestantes);
         if (tentativasRestantes === 0) {
-            let messageBody = "Voce perdeu! A palavra secreta era " + secretWord;
-            openModal(messageBody);
+            let messageBody = `Voce perdeu! A palavra secreta era: <br><strong>${secretWord}</strong>`;
+            let messageTitle = "Não foi desta vez :("
+            openModal(messageBody, messageTitle);
         }
     }
     else {
@@ -146,7 +160,9 @@ function compareLists(letter) {
     }
 
     if (victory) {
-        //Mensagem de vitória
+        let messageBody = "Parabéns, vamos dificultar na próxima.";
+        let messageTitle = "Uhuuuuuuul, você acertou!";
+        openModal(messageBody, messageTitle);
         tentativasRestantes = 0;
     }
 }
@@ -176,10 +192,13 @@ function loadingImagesHangedMan(tentativasRestantes) {
     }
 }
 
-function openModal(messageBody) {
+function openModal(messageBody, messageTitle) {
     let modalBody = document.getElementById("messageModal");
-    modalBody.innerText = messageBody;
+    let modalTitle = document.getElementById("exampleModalLabel");
+    modalBody.innerHTML = messageBody;
+    modalTitle.innerText = messageTitle;
     $("#myModal").modal({
         show: true
     });
 }
+
